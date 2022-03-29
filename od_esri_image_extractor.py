@@ -444,8 +444,8 @@ class EsriWorldTerrainDlg (c4d.gui.GeDialog):
         self.verif_coordonnees()
     
     def copier_coordonnees(self):
-        ymax = self.GetFloat(self.ID_XMAX)
-        ymin = self.GetFloat(self.ID_XMIN)
+        ymax = self.GetFloat(self.ID_YMAX)
+        ymin = self.GetFloat(self.ID_YMIN)
         xmax = self.GetFloat(self.ID_XMAX)
         xmin = self.GetFloat(self.ID_XMIN)
         txt = "{0},{1},{2},{3}".format(xmin,ymin,xmax,ymax)

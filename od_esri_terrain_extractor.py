@@ -145,7 +145,7 @@ def importGeoTif(fn_tif,doc):
     poly.SetName(os.path.basename(fn_tif))
     pts = []
     polys =[]
-    pos = c4d.Vector(val_px_x/2,0,val_px_y/2)
+    pos = c4d.Vector(val_px_x/2,0,-val_px_y/2)
     #print(pos)
     i = 0
     id_poly =0

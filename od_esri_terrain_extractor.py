@@ -142,7 +142,7 @@ def importGeoTif(fn_tif,doc):
     nb_pts = width*height
     nb_polys = (width-1)*(height-1)
     poly = c4d.PolygonObject(nb_pts,nb_polys)
-    poly.SetName(os.path.basename(fn_tif))
+    poly.SetName(f'ESRI_MNT_{round(val_px_x)}m')
     pts = []
     polys =[]
     pos = c4d.Vector(val_px_x/2,0,-val_px_y/2)
@@ -252,10 +252,10 @@ class Bbox(object):
                 'Y : '+str(self.min.z)+'-'+str(self.max.z)+'->'+str(self.max.z-self.min.z))
 
     def GetCube(self,haut = 200):
-    	res = c4d.BaseObject(c4d.Ocube)
-    	taille = c4d.Vector(self.largeur,haut,self.hauteur)
-    	res.SetAbsPos(self.centre)
-    	return res
+        res = c4d.BaseObject(c4d.Ocube)
+        taille = c4d.Vector(self.largeur,haut,self.hauteur)
+        res.SetAbsPos(self.centre)
+        return res
 
     @staticmethod
     def fromObj(obj,origine = c4d.Vector()):
@@ -603,7 +603,10 @@ class EsriWorldTerrainDlg (c4d.gui.GeDialog):
 
         #IMPORTER LE GEOTIF
         if id == self.ID_BTON_IMPORT_GEOTIF:
-            fn_tif = c4d.storage.LoadDialog()
+            def_path = None
+            #ATTENTION A CHANGER DANS LA VERSION FINALE
+            #def_path = '/Users/olivierdonze/Downloads'
+            fn_tif = c4d.storage.LoadDialog(def_path = def_path)
             if not fn_tif : return
             doc = c4d.documents.GetActiveDocument()
             importGeoTif(fn_tif,doc)
